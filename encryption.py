@@ -1,55 +1,76 @@
+import sys
 from sys import argv
-
+import operator
+import collections
+from caesar_cipher import caesar_cipher
+from vigenere_cipher import vigenere_cipher, vigenere_cipher_decoder
+from vernam_cipher import vernam_cipher, vernam_cipher_decoder
 string = input()  # Get the string input
-key = int(input())  # Get the cipher shift key
 
-if key < 1 or key > 26:  # Key should be in range of the alphabets
-    exit(0)  # Exit program if out of range
+def frequency_analysis(cipher_text):
+    LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    cipher_text = cipher_text.upper()
+    letter_freq = {}  # Put all the letters corresponding with their frequency
 
+    for letter in LETTERS:
+        letter_freq[letter] = 0
 
-# Caesar cipher implementation
-def caesar_cipher(s):
-    ciphered_string = ''  # String to store encrypted result
+    for letter in cipher_text:
+        if letter in LETTERS:
+            letter_freq[letter] += 1  # Increase frequency by 1 if letter exists
 
-    for hieroglyph in s:
-        # Only letters will be encrypted. Numbers and other symbols stay in the original form
-        if hieroglyph.isalpha():  # Check if letter is alphabet
-            hold_shift = ord(hieroglyph)  # Get ordinal value of letter
-            hold_shift += key  # Shift value by the key
+    # Sort dictionary value wise
+    letter_freq_sorted = sorted(letter_freq.items(), key=operator.itemgetter(1), reverse=True)
 
-            # Check if letter is uppercase and get ordinal value
-            if hieroglyph.isupper():
-                if hold_shift < ord('A'):
-                    hold_shift += 26
-                elif hold_shift > ord('Z'):
-                    hold_shift -= 26
-            # Check if letter is lower case and get ordinal value
-            elif hieroglyph.islower():
-                if hold_shift < ord('a'):
-                    hold_shift += 26
-                elif hold_shift > ord('z'):
-                    hold_shift -= 26
-            ciphered_string += chr(hold_shift)  # Put character in encrypted string
+    letter_list = []
+    for index in letter_freq_sorted:
+        letter_list.append(index[0])  # Make a list of all letter with descending order
+
+    going_plain = ''
+    readable = []
+    for l in range(len(letter_list)):
+        lettered_key = letter_list[l]  # Iterate through the letters in the list
+        key_int = LETTERS.index(lettered_key) - LETTERS.index('E')  # Find the distance between the letter and E
+        going_plain = caesar_cipher(cipher_text, int(key_int))  # Cipher using caesar cipher
+        readable.append(going_plain)
+
+    for i in readable:
+        print(f'\n{i}')
+        print(f'\nIs this decoding readable?')
+        option = input()
+        if option == 'y':
+            exit(0)
         else:
-            ciphered_string += hieroglyph  # If position value is not alphabet, return original value
-    return ciphered_string  # Return encrypted string
+            pass
+
+    # lettered_key = letter_list[0]
+    # key_int = LETTERS.index(lettered_key) - LETTERS.index('E')
+    # going_plain = caesar_cipher(cipher_text, int(key_int))
 
 
-def vigenere_cipher(s):
-    print(s)
-
-
-def vernam_cipher(s):
-    print(s)
-
-
-def get_cipher_mode(name):
+def get_cipher_mode(name, de):
     if name.lower() == 'caesar':
-        print(caesar_cipher(string))
+        if de == 'encode':
+            caesar_key = int(input())
+            print(caesar_cipher(string, caesar_key))
+        elif de == 'decode':
+            caesar_key = int(input())
+            caesar_key = -caesar_key
+            print(caesar_cipher(string, caesar_key))
+        elif de == 'frequency':
+            # ciphered_string = caesar_cipher(string, )
+            print(frequency_analysis(string))
     elif name.lower() == 'vigenere':
-        vigenere_cipher(string)
+        vigenere_key = input()
+        if de.lower() == 'encode':
+            print(vigenere_cipher(string, vigenere_key))
+        elif de.lower() == 'decode':
+            print(vigenere_cipher_decoder(string, vigenere_key))
     elif name.lower() == 'vernam':
-        vernam_cipher(string)
-
+        vernam_key = input()
+        if de == 'encode':
+            print(vernam_cipher(string, vernam_key))
+        elif de == 'decode':
+            print(vernam_cipher_decoder(string, vernam_key))
 
 get_cipher_mode(*argv[1:])
