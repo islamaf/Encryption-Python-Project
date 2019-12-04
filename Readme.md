@@ -1,9 +1,17 @@
 ISLAM ABDELFATTAH ELSAYED
 
+**For the best results and the fastest use of the program, read this first.**
+
 # Python project program
 In order to deploy the program, you will need to download _latest_encryption.py_, _caesar_cipher.py_, _vernam_cipher.py_, _vigenere_cipher.py_ present in this repository.
 
-## Instructions inside program
+## General rules to how the ciphers work
+Each cipher requires a key and a plaintext to be encrypted. For decryption, it is the same too, just in the opposite way.
+* Caesar cipher: Plaintext, Key(number from 1-25).
+* Vigenere cipher: Plaintext, Key(letters).
+* Vernam cipher: Plaintext, Key(letters).
+
+## Instructions inside program _using command line_
 Using **cmd**, **terminal**,  etc. simply open the program with the needed **cipher** and **type (_encode_, _decode_, _frequency_)** as the _command line arguments_.  
 * Example of _encoding_:  
 Example: `FILE PATH> python3 latest_encryption.py caesar encode`  
@@ -17,3 +25,8 @@ Frequency analysis works by getting the _distance_ from the **most frequent lett
 * If _yes[y]_: program just exists as the correct plaintext has been found.
 * If _no[n]_: program iterates to second frequent letter and performs the same process of getting the distance to letter "E"
 _This process goes on till the user finds the correct plaintext_
+
+## Instructions inside program _using GUI_
+Under the GUI folder the main GUI is the `gui_main` file (obviously haha). There will be a menu to all ciphers that can be used at the moment. By clicking on any of the options in the menu, the corresponding cipher file will directly pop up in a new window allowing the user to use any of the ciphers.  
+**For more fun and a pretty formal experience, start from `gui_main`.**  
+Each cipher has its own window and eavh one works in a different way than the other.  
