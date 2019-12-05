@@ -12,6 +12,7 @@ Each cipher requires a key and a plaintext to be encrypted. For decryption, it i
 * Vigenere cipher: Plaintext, Key(letters).  
 * Vernam cipher: Plaintext, Key(letters) and **length of key** = **length of text**.  
   If condition is not satisfied, the key will be repeated till it equals the text length as what happens in _Vigenere cipher_.
+* Atbash cipher: Plaintext.
 
 ## Instructions inside program _using command line_
 Using **cmd**, **terminal**,  etc. simply open the program with the needed **cipher** and **type (_encode_, _decode_, _frequency_)** as the _command line arguments_.  
