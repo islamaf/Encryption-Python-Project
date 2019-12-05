@@ -3,7 +3,7 @@ ISLAM ABDELFATTAH ELSAYED
 **For the best results and the fastest use of the program, read this first.**
 
 # Python project program
-In order to deploy the program for **command line arguments**, you will need to download _latest_encryption.py_, _caesar_cipher.py_, _vernam_cipher.py_, _vigenere_cipher.py_, _atbash_cipher.py_ present in this repository.
+In order to deploy the program for **command line arguments**, you will need to download _latest_encryption.py_, _caesar_cipher.py_, _vernam_cipher.py_, _vigenere_cipher.py_, _atbash_cipher.py_ present in this repository.  
 In order to deploy the program for **GUI**, you will need to download _gui_main.py_, _caesar_cipher_gui.py_, _vernam_cipher_gui.py_, _vigenere_cipher_gui.py_, _atbash_cipher_gui.py_ present in this repository.
 
 ## General rules to how the ciphers work
