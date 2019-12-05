@@ -18,16 +18,15 @@ Each cipher requires a key and a plaintext to be encrypted. For decryption, it i
 Using **cmd**, **terminal**,  etc. simply open the program with the needed **cipher** and **type (_encode_, _decode_, _frequency_)** as the _command line arguments_.  
 * Example of _encoding_:  
 Example: `FILE PATH> python3 latest_encryption.py caesar encode`  
+Example: `FILE PATH> python3 latest_encryption.py vigenere encode`  
 * Example of _decoding_:  
 Example: `FILE PATH> python3 latest_encryption.py caesar decode`  
+Example: `FILE PATH> python3 latest_encryption.py vigenere decode`  
 * Example of _frequency analysis decoding_:  
 Example: `FILE PATH> python3 latest_encryption.py caesar frequency`  
 
 ## Notes for how frequency analysis works
-Frequency analysis works by getting the _distance_ from the **most frequent letter(s)** in a sentence and then calculates how far is it from letter "E". The function gives the user an **option** to see if he can see the output/plaintext as the correct/readable text:
-* If _yes[y]_: program just exists as the correct plaintext has been found.
-* If _no[n]_: program iterates to second frequent letter and performs the same process of getting the distance to letter "E"
-_This process goes on till the user finds the correct plaintext_
+Frequency analysis works by getting the _distance_ from the **most frequent letter(s)** in a sentence and then calculates how far is it from letter "E".
 
 ## Instructions inside program _using GUI_
 Under the GUI folder the main GUI is the `gui_main` file (obviously haha). There will be a menu to all ciphers that can be used at the moment. By clicking on any of the options in the menu, the corresponding cipher file will directly pop up in a new window allowing the user to use any of the ciphers.  
