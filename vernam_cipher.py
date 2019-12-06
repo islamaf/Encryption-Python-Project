@@ -19,13 +19,15 @@ def vernam_cipher(s, key):
     remove_symbols = re.sub(r'[^a-zA-Z]', '', s)
     s = remove_symbols
 
+    key_remove_symbols = re.sub(r'[^a-zA-Z]', '', key)
+    key = key_remove_symbols
+
     # Key
     if len(key) < len(s):
         for i in range(len(s)):
             key += key[i]  # Generate key from itself if len(key) < len(s)
     if len(key) > len(s):
         key = key[0:len(s)]  # Slice key to the size of string if it is bigger
-    print(key)
 
     for hieroglyph in s:
         if hieroglyph in LETTERS:
@@ -58,8 +60,13 @@ def vernam_cipher_decoder(s, key):
     key_number = []  # List of numbers corresponding to letter for key
     plaintext = ''
 
+    remove_symbols = re.sub(r'[^a-zA-Z]', '', s)
+    s = remove_symbols
+
+    key_remove_symbols = re.sub(r'[^a-zA-Z]', '', key)
+    key = key_remove_symbols
+
     # Key
-    # key = input()
     if len(key) < len(s):
         for i in range(len(s)):
             key += key[i]  # Generate key from itself if len(key) < len(s)
