@@ -1,10 +1,9 @@
-import sys
 from sys import argv
 import operator
-import collections
 from caesar_cipher import caesar_cipher
 from vigenere_cipher import vigenere_cipher, vigenere_cipher_decoder
 from vernam_cipher import vernam_cipher, vernam_cipher_decoder
+from atbash_cipher import atbash_encode_decode
 string = input()  # Get the string input
 
 def frequency_analysis(cipher_text):
@@ -26,27 +25,12 @@ def frequency_analysis(cipher_text):
     for index in letter_freq_sorted:
         letter_list.append(index[0])  # Make a list of all letter with descending order
 
-    going_plain = ''
-    readable = []
     for l in range(len(letter_list)):
         lettered_key = letter_list[l]  # Iterate through the letters in the list
         key_int = LETTERS.index(lettered_key) - LETTERS.index('E')  # Find the distance between the letter and E
-        going_plain = caesar_cipher(cipher_text, int(key_int))  # Cipher using caesar cipher
-        readable.append(going_plain)
+        going_plain = caesar_cipher(cipher_text, int(-key_int))  # Cipher using caesar cipher
 
-    for i in readable:
-        print(f'\n{i}')
-        print(f'\nIs this decoding readable?')
-        option = input()
-        if option == 'y':
-            exit(0)
-        else:
-            pass
-
-    # lettered_key = letter_list[0]
-    # key_int = LETTERS.index(lettered_key) - LETTERS.index('E')
-    # going_plain = caesar_cipher(cipher_text, int(key_int))
-
+        print (going_plain)
 
 def get_cipher_mode(name, de):
     if name.lower() == 'caesar':
@@ -72,5 +56,10 @@ def get_cipher_mode(name, de):
             print(vernam_cipher(string, vernam_key))
         elif de == 'decode':
             print(vernam_cipher_decoder(string, vernam_key))
+    elif name.lower() == 'atbash':
+        if de == 'encode':
+            print(atbash_encode_decode(string))
+        elif de == 'decode':
+            print(atbash_encode_decode(string))
 
 get_cipher_mode(*argv[1:])
