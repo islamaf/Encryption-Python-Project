@@ -1,4 +1,5 @@
 from string import ascii_lowercase, ascii_uppercase
+import re
 max_num = 26
 
 # Vernam cipher implementation
@@ -15,13 +16,16 @@ def vernam_cipher(s, key):
     if s == s.upper():
         LETTERS = {letter: str(index) for index, letter in enumerate(ascii_uppercase, start=0)}
 
+    remove_symbols = re.sub(r'[^a-zA-Z]', '', s)
+    s = remove_symbols
+
     # Key
-    # key = input()
     if len(key) < len(s):
         for i in range(len(s)):
             key += key[i]  # Generate key from itself if len(key) < len(s)
     if len(key) > len(s):
         key = key[0:len(s)]  # Slice key to the size of string if it is bigger
+    print(key)
 
     for hieroglyph in s:
         if hieroglyph in LETTERS:
@@ -33,7 +37,7 @@ def vernam_cipher(s, key):
 
     for i in range(len(s_number)):
         total = int(s_number[i]) + int(key_number[i])  # Add corresponding list position numbers one by one
-        if total > max_num:
+        if total >= max_num:
             total = total - max_num  # If total > 26, minus 26 from total
             for k, v in LETTERS.items():  # Search for number in dictionary and get corresponding letter
                 total = str(total)
@@ -82,7 +86,7 @@ def vernam_cipher_decoder(s, key):
 
     for i in range(len(s_number)):
         total = int(s_number[i]) - int(key_number[i])  # Add corresponding list position numbers one by one
-        if total > max_num:
+        if total >= max_num:
             total = total - max_num  # If total > 26, minus 26 from total
             for k, v in LETTERS.items():  # Search for number in dictionary and get corresponding letter
                 total = str(total)
