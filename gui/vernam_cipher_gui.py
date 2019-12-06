@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from string import ascii_lowercase, ascii_uppercase
+import re
 
 root = Tk()
 root.title('VERNAM CIPHER ENCRYPTION PROGRAM')
@@ -45,8 +46,10 @@ def vernam_cipher():
     if s == s.upper():
         LETTERS = {letter: str(index) for index, letter in enumerate(ascii_uppercase, start=0)}
 
+    remove_symbols = re.sub(r'[^a-zA-Z]', '', s)
+    s = remove_symbols
+
     # Key
-    # key = input()
     if len(key) < len(s):
         for i in range(len(s)):
             key += key[i]  # Generate key from itself if len(key) < len(s)
