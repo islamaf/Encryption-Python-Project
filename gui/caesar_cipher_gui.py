@@ -1,11 +1,13 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter as tk
 from caesar_cipher import caesar_cipher
 import operator
 
-root = Tk()
+root = tk.Tk()
 root.title('CAESAR CIPHER ENCRYPTION PROGRAM')
 root.resizable(True, True)
+root.withdraw()
 
 root.frame_header = ttk.Frame()
 
