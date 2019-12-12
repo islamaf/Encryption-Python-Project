@@ -4,6 +4,7 @@ from tkinter import ttk
 root = Tk()
 root.title('ATBASH CIPHER ENCRYPTION PROGRAM')
 root.resizable(True, True)
+root.withdraw()
 
 root.frame_header = ttk.Frame()
 
