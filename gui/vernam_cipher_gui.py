@@ -6,6 +6,7 @@ import re
 root = Tk()
 root.title('VERNAM CIPHER ENCRYPTION PROGRAM')
 root.resizable(True, True)
+root.withdraw()
 
 root.frame_header = ttk.Frame()
 
