@@ -1,26 +1,26 @@
+import os
 from tkinter import *
 from tkinter import ttk
-import os
 
 root = Tk()
 root.title('LEGENDARY ENCRYPTION')
-root. resizable(True, True)
+root.resizable(True, True)
 
 root.frame_header = ttk.Frame()
 
 ttk.Label(root.frame_header,  text='Choose cipher:', style='Header.TLabel').grid(row=0, column=1)
 
 def caesar_cipher_open():
-    os.system('python caesar_cipher_gui.py')
+    import caesar_cipher_gui
 
 def vigenere_cipher_open():
-    os.system('python vigenere_cipher_gui.py')
+    import vigenere_cipher_gui
 
 def vernam_cipher_open():
-    os.system('python vernam_cipher_gui.py')
+    import vernam_cipher_gui
 
 def atbash_cipher_open():
-    os.system('python atbash_cipher_gui.py')
+    import atbash_cipher_gui
 
 caesar_button = ttk.Button(root.frame_header, text="Open caesar", command=lambda: caesar_cipher_open())
 caesar_button.grid(row=1, column=1)
